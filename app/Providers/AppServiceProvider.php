@@ -19,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        \Illuminate\Support\Facades\URL::forceScheme(
+            request()->isSecure()
+                ? 'https'
+                : env('APP_SCHEME', 'http')
+        );
     }
 }
